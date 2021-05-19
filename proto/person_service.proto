@@ -1,0 +1,36 @@
+syntax = "proto3";
+package grpc;
+
+// [START java_declaration]
+option java_multiple_files = true;
+option java_package = "com.example.tutorial.protos";
+option java_outer_classname = "PersonService";
+// [END java_declaration]
+
+// [START go_declaration]
+option go_package = "./go/grpc";
+// [END go_declaration]
+
+import "person.proto";
+
+service PersonService {
+    rpc Save (SaveRequest) returns (SaveResponse) {}
+    rpc List (ListRequest) returns (ListResponse) {}
+    rpc ListStream (ListRequest) returns (stream ListResponse) {}
+}
+
+message SaveRequest {
+    Person person = 1;
+}
+
+message SaveResponse {
+
+}
+
+message ListRequest {
+
+}
+
+message ListResponse {
+    repeated Person person = 1;
+}
